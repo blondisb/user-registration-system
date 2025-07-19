@@ -1,0 +1,14 @@
+services:
+  api:
+    build: ./docker/Dockerfile.api
+    ports: ["8000:8000"]
+  
+  worker:
+    build: ./docker/Dockerfile.worker
+    depends_on: [redis, postgres]
+  
+  redis:
+    image: redis:7-alpine
+    
+  postgres:
+    image: postgres:15
